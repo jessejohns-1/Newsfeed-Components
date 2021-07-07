@@ -86,6 +86,15 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'I DID IT',
+    date: '911',
+    firstParagraph: `asdasdsadsadsadsadsada`,
+
+    secondParagraph: `asdsadsafsadsadsaf `,
+
+    thirdParagraph: `asfsadsadsadsadsadsasadasd`
   }
 ];
 
@@ -114,3 +123,53 @@ const data = [
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
+const articles = document.querySelector('.articles')
+
+function articleMaker(objecta){
+//this is creating the html divs and h2 p span etc
+  const article = document.createElement('div');
+  const title = document.createElement('h2');
+  const date = document.createElement('p');
+  const firstParagraph = document.createElement('p');
+  const secondParagraph = document.createElement('p');
+  const thirdParagraph = document.createElement('p');
+  const expandButton = document.createElement('span');
+
+  
+  article.appendChild(title);
+  article.appendChild(date);
+  article.appendChild(firstParagraph);
+  article.appendChild(secondParagraph);
+  article.appendChild(thirdParagraph);
+  article.appendChild(expandButton);
+  
+  article.classList.add('article');
+  title.classList.add('h2');
+  date.classList.add('date');
+  firstParagraph.classList.add('firstParagraph');
+  secondParagraph.classList.add('secondParagraph');
+  thirdParagraph.classList.add('thirdParagraph');
+  expandButton.classList.add('expandButton')
+  
+  title.textContent = objecta.title
+  date.textContent = objecta.date
+  firstParagraph.textContent = objecta.firstParagraph
+  secondParagraph.textContent = objecta.secondParagraph
+  thirdParagraph.textContent = objecta.thirdParagraph
+  expandButton.textContent = '+';
+
+
+  expandButton.addEventListener('click', () => {
+    article.classList.toggle("article-open")
+  })
+return article;
+}
+
+
+const articleElm = data.map((data) => {
+  return articleMaker(data)
+})
+
+articleElm.forEach((element) => articles.appendChild(element))
+
+
